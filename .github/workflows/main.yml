@@ -25,7 +25,7 @@ jobs:
         run: sudo apt-get install cpu-checker
 
       - name: KVM check
-        run: kvm-ok
+        run: sudo /usr/sbin/kvm-ok
 
       - name: Install KVM
         run: sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils ia32-libs-multiarch
