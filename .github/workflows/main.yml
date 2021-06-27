@@ -29,7 +29,7 @@ jobs:
           version: 1.10.1
           args: -limit 5
           browsers: android
-          last-versions: 2
+          last-versions: 1
 
       - name: Checkout the code
         uses: actions/checkout@v2
