@@ -34,16 +34,18 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2
 
-      - name : Setup the node env
-        uses: actions/setup-node@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v2
         with:
-          node-version: '14'
+          java-version: 1.8
 
-      - name : Install the dependencies
-        run : npm install
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v4
+        with:
+          maven-version: 3.8.1
 
-      - name : Run wdio test scripts
-        run : npm run test
+      - name : Run test scripts
+        run : mvn clean test
 
 #      - name: Get allure history
 #        uses: actions/checkout@v2
