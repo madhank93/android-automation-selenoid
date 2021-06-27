@@ -1,0 +1,58 @@
+version: "3.4"
+services:
+  selenoid:
+    image: "aerokube/selenoid:latest"
+    ports:
+      - "4444:4444"
+    container_name: selenoid
+    networks:
+      - selenoid
+    volumes:
+      - "./selenoid-outputs/browsers:/etc/selenoid:ro"
+      - "./selenoid-outputs/output/:/output"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./selenoid-outputs/logs:/opt/selenoid/logs"
+    command: [
+        "-conf", # Flag for browsers configuration
+        "/etc/selenoid/browsers.json", # Location for browsers configuration file
+        "-container-network", # Network to be used for containers - flag
+        "selenoid", # network name
+        "-log-output-dir", # Flag to save logs in a directory
+        "/opt/selenoid/logs", # Location of the directory
+        "-limit", # Flag for number of simultaneous container to run
+        "5", # run count
+        "-save-all-logs", # to save all logs without considering capabilities
+        "-enable-file-upload", # file upload support
+    ]
+
+  android:
+    image: "selenoid/android:9.0"
+    container_name: android
+    depends_on:
+      - selenoid
+      - selenoid-ui
+    links:
+      - selenoid
+    networks:
+      - selenoid
+    environment:
+      - TZ=Asia/Kolkata
+      #- ENABLE_VNC=true
+      #- ENABLE_VIDEO=true
+      - SKIN=WXGA800
+    command: ["--privileged"]
+
+#  selenoid-ui:
+#    image: "aerokube/selenoid-ui:latest"
+#    container_name: selenoid-ui
+#    links:
+#      - selenoid
+#    ports:
+#      - "8080:8080"
+#    networks:
+#      - selenoid
+#    command: ["--selenoid-uri", "http://selenoid:4444"]
+
+networks:
+  selenoid:
+    name: selenoid

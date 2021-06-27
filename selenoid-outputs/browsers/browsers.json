@@ -1,0 +1,12 @@
+{
+    "android": {
+        "default": "9.0",
+        "versions": {
+            "9.0": {
+                "image": "selenoid/android:9.0",
+                "port": "4444",
+                "path": "/wd/hub"
+            }
+        }
+    }
+}
