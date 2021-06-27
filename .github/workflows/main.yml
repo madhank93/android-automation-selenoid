@@ -21,22 +21,37 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
-      - name: Start Selenoid server
-        uses: n-ton4/selenoid-github-action@master
-        id: start-selenoid
-        continue-on-error: false
-        with:
-          version: 1.10.1
-          args: -limit 2
-          browsers: android:9.0
-          last-versions: 1
+      - name: CPU checked
+        run: sudo apt-get install cpu-checker
 
-      - name: Check Selenoid has been started
-        run: curl http://localhost:4444/status
+      - name: GREP checker
+        run: egrep -c '(vmx|svm)' /proc/cpuinfo
 
-      - name: Adding session from curl
-        run: |-
-          curl -X POST 'http://localhost:4444/wd/hub/session' -d '{ "desiredCapabilities":{ "browserName":"android", "browserVersion": "9.0", "platformName": "Android","selenoid:options": {"enableVNC": true,"name": "this.test.is.launched.by.curl","sessionTimeout": "120s"}}}'
+      - name: KVM check
+        run: kvm-ok
+
+      - name: Install KVM
+        run: sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils ia32-libs-multiarch
+
+      - name: KVM check
+        run: kvm-ok
+
+#      - name: Start Selenoid server
+#        uses: n-ton4/selenoid-github-action@master
+#        id: start-selenoid
+#        continue-on-error: false
+#        with:
+#          version: 1.10.1
+#          args: -limit 2
+#          browsers: android:9.0
+#          last-versions: 1
+#
+#      - name: Check Selenoid has been started
+#        run: curl http://localhost:4444/status
+#
+#      - name: Adding session from curl
+#        run: |-
+#          curl -X POST 'http://localhost:4444/wd/hub/session' -d '{ "desiredCapabilities":{ "browserName":"android", "browserVersion": "9.0", "platformName": "Android","selenoid:options": {"enableVNC": true,"name": "this.test.is.launched.by.curl","sessionTimeout": "120s"}}}'
 
 #      - name: Checkout the code
 #        uses: actions/checkout@v2

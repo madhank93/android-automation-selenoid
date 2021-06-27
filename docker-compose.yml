@@ -26,7 +26,7 @@ services:
     ]
 
   android:
-    image: "selenoid/android:9.0"
+    image: "selenoid/android:10.0"
     container_name: android
     depends_on:
       - selenoid
@@ -42,16 +42,16 @@ services:
       - SKIN=WXGA800
     command: ["--privileged"]
 
-#  selenoid-ui:
-#    image: "aerokube/selenoid-ui:latest"
-#    container_name: selenoid-ui
-#    links:
-#      - selenoid
-#    ports:
-#      - "8080:8080"
-#    networks:
-#      - selenoid
-#    command: ["--selenoid-uri", "http://selenoid:4444"]
+  selenoid-ui:
+    image: "aerokube/selenoid-ui:latest"
+    container_name: selenoid-ui
+    links:
+      - selenoid
+    ports:
+      - "8080:8080"
+    networks:
+      - selenoid
+    command: ["--selenoid-uri", "http://selenoid:4444"]
 
 networks:
   selenoid:
