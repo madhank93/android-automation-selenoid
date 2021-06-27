@@ -24,9 +24,6 @@ jobs:
       - name: CPU checked
         run: sudo apt-get install cpu-checker
 
-      - name: GREP checker
-        run: egrep -c '(vmx|svm)' /proc/cpuinfo
-
       - name: KVM check
         run: kvm-ok
 
