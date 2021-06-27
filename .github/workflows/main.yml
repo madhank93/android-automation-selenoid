@@ -35,18 +35,8 @@ jobs:
         run: curl http://localhost:4444/status
 
       - name: Adding session from curl
-        run: "curl -X POST 'http://localhost:4444/wd/hub/session' -d '{
-                          "desiredCapabilities":{
-               "browserName":"android",
-               "browserVersion": "9.0",
-               "platformName": "Android",
-               "selenoid:options": {
-                 "enableVNC": true,
-                 "name": "this.test.is.launched.by.curl",
-                 "sessionTimeout": "120s"
-               }
-      }
-      }'"
+        run: |-
+          curl -X POST 'http://localhost:4444/wd/hub/session' -d '{ "desiredCapabilities":{ "browserName":"android", "browserVersion": "9.0", "platformName": "Android","selenoid:options": {"enableVNC": true,"name": "this.test.is.launched.by.curl","sessionTimeout": "120s"}}}'
 
 #      - name: Checkout the code
 #        uses: actions/checkout@v2
