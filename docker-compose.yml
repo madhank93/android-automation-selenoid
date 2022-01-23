@@ -6,7 +6,7 @@ services:
       - "4444:4444"
     container_name: selenoid
     networks:
-      - selenoid
+      - selenoid-network
     volumes:
       - "./selenoid-outputs/browsers:/etc/selenoid:ro"
       - "./selenoid-outputs/output/:/output"
@@ -22,25 +22,32 @@ services:
         "-limit", # Flag for number of simultaneous container to run
         "5", # run count
         "-save-all-logs", # to save all logs without considering capabilities
-        "-enable-file-upload", # file upload support
-    ]
+        "-service-startup-timeout",
+        "10m",
+        "-session-attempt-timeout",
+        "10m",
+      ]
 
   android:
-    image: "selenoid/android:10.0"
+    image: "selenoid/android:6.0"
     container_name: android
     depends_on:
       - selenoid
       - selenoid-ui
+    privileged: true
     links:
       - selenoid
     networks:
-      - selenoid
+      - selenoid-network
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "/dev:/dev"
+      - "/lib/modules:/lib/modules"
     environment:
       - TZ=Asia/Kolkata
-      #- ENABLE_VNC=true
-      #- ENABLE_VIDEO=true
+      - ENABLE_VNC=true
+      - ENABLE_VIDEO=true
       - SKIN=WXGA800
-    command: ["--privileged"]
 
   selenoid-ui:
     image: "aerokube/selenoid-ui:latest"
@@ -50,9 +57,9 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - selenoid
+      - selenoid-network
     command: ["--selenoid-uri", "http://selenoid:4444"]
 
 networks:
-  selenoid:
-    name: selenoid
+  selenoid-network:
+    #name: selenoid
