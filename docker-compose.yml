@@ -28,27 +28,6 @@ services:
         "10m",
       ]
 
-  android:
-    image: "selenoid/android:6.0"
-    container_name: android
-    depends_on:
-      - selenoid
-      - selenoid-ui
-    privileged: true
-    links:
-      - selenoid
-    networks:
-      - selenoid-network
-    volumes:
-      - "/var/run/docker.sock:/tmp/docker.sock:ro"
-      - "/dev:/dev"
-      - "/lib/modules:/lib/modules"
-    environment:
-      - TZ=Asia/Kolkata
-      - ENABLE_VNC=true
-      - ENABLE_VIDEO=true
-      - SKIN=WXGA800
-
   selenoid-ui:
     image: "aerokube/selenoid-ui:latest"
     container_name: selenoid-ui
@@ -62,4 +41,4 @@ services:
 
 networks:
   selenoid-network:
-    #name: selenoid
+    name: selenoid

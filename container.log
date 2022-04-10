@@ -1,0 +1,50 @@
+Creating network "android-automation-selenoid_selenoid-network" with the default driver
+Creating selenoid ... done
+Creating selenoid-ui ... done
+Creating android     ... done
+Attaching to selenoid, selenoid-ui, android
+selenoid       | 2022/01/23 14:12:05 [-] [INIT] [Loading configuration files...]
+selenoid-ui    | 2022/01/23 14:12:06 [INIT] [Listening on :8080]
+selenoid       | 2022/01/23 14:12:05 [-] [INIT] [Loaded configuration from /etc/selenoid/browsers.json]
+selenoid       | 2022/01/23 14:12:05 [-] [INIT] [Video Dir: /opt/selenoid/video]
+selenoid       | 2022/01/23 14:12:05 [-] [INIT] [Logs Dir: /opt/selenoid/logs]
+selenoid       | 2022/01/23 14:12:05 [-] [INIT] [Saving all logs]
+selenoid       | 2022/01/23 14:12:05 [-] [INIT] [Your Docker API version is 1.41]
+selenoid       | 2022/01/23 14:12:05 [-] [INIT] [Timezone: UTC]
+selenoid       | 2022/01/23 14:12:05 [-] [INIT] [Listening on :4444]
+android        | Waiting X server...
+android        | Logging to: /tmp/fluxbox.log
+android        | Waiting X server...
+android        | Waiting X server...
+android        | * daemon not running; starting now at tcp:5037
+android        | 
+android        |  --- x11vnc loop: 1 ---
+android        | 
+android        | * daemon started successfully
+android        | adb: no devices/emulators found
+selenoid-ui    | 2022/01/23 14:12:06 Client added. 1 registered clients
+android        |  --- x11vnc loop: waiting for: 103
+android        | 
+android        | PORT=5900
+android        | adb: no devices/emulators found
+android        | WARNING. Using fallback path for the emulator registration directory.
+android        | checkValid: hw configs not eq
+android        | adb: device offline
+android        | emulator: WARNING: System image is writable
+android        | emulator: WARNING: encryption is off
+android        | Your emulator is out of date, please update by launching Android Studio:
+android        |  - Start Android Studio
+android        |  - Select menu "Tools > Android > SDK Manager"
+android        |  - Click "SDK Tools" tab
+android        |  - Check "Android Emulator" checkbox
+android        |  - Click "OK"
+android        | 
+android        | adb: device offline
+selenoid       | 2022/01/23 14:12:45 [-] [NEW_REQUEST] [unknown] [192.168.32.1]
+selenoid       | 2022/01/23 14:12:45 [-] [NEW_REQUEST_ACCEPTED] [unknown] [192.168.32.1]
+selenoid       | 2022/01/23 14:12:45 [7] [LOCATING_SERVICE] [android] [6.0]
+selenoid       | 2022/01/23 14:12:45 [7] [USING_DOCKER] [android] [6.0]
+selenoid       | 2022/01/23 14:12:45 [7] [CREATING_CONTAINER] [selenoid/android:6.0]
+selenoid       | 2022/01/23 14:12:45 [7] [STARTING_CONTAINER] [selenoid/android:6.0] [30fbe71a1c9e72218f0eb572ff9d985918d0b3756ffa0d5e2b8fc245c597c86a]
+selenoid       | 2022/01/23 14:12:46 [7] [CONTAINER_STARTED] [selenoid/android:6.0] [30fbe71a1c9e72218f0eb572ff9d985918d0b3756ffa0d5e2b8fc245c597c86a] [0.44s]
+selenoid-ui    | 2022/01/23 14:17:45 [ERROR] [Failed to proxy to http://selenoid:4444/wd/hub/session: context canceled]

@@ -6,7 +6,8 @@
         "image": "selenoid/android:6.0",
         "port": "4444",
         "path": "/wd/hub",
-        "privileged": true
+        "privileged": true,
+        "cpu": "2.0"
       }
     }
   }
