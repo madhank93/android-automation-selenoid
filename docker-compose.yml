@@ -39,6 +39,17 @@ services:
       - selenoid-network
     command: ["--selenoid-uri", "http://selenoid:4444"]
 
+  android-test:
+    image: "android-demo"
+    links:
+      - "selenoid"
+    networks:
+      - selenoid-network
+    depends_on:
+      - selenoid
+      - selenoid-ui
+    command: ["gradle", "test"]
+
 networks:
   selenoid-network:
     name: selenoid
